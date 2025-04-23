@@ -1,12 +1,14 @@
 package com.mycompany.cadcli;
 
+import java.util.Scanner;
+
 public class Cliente {
     private String cpf;
     private int idade;
     private String nome;
     
     //Valida se o CPF tiver somente numeros e se tiver 11 digitos
-    public static boolean validarCpf(String cpf) {
+    public boolean validarCpf(String cpf) {
         //Transforma a String em um array de caracteres para que a outra variavel possa percorrer
         for (char ch : cpf.toCharArray()) {
             if (!Character.isDigit(ch) || cpf.length() != 11) {
@@ -45,4 +47,27 @@ public class Cliente {
         return "Nome do cliente: " + nome + ", CPF: " + cpf + ", Idade: " + idade;
     }
     
+    //tentei fazer um loop pra valiadar certinho mas ta dificil .-.
+    public void cadastrarCliente() {
+        Scanner atributo = new Scanner(System.in);
+        Cliente ocliente = new Cliente();
+        
+        //GAMBIARRA DOIDA!!!!!!!!!!!!!!!
+        do {
+            System.out.println("Atribua um nome: ");
+            String nomeCadastro = atributo.nextLine();
+            ocliente.colocarNome(nomeCadastro);
+
+            System.out.println("Atribua uma Idade: ");
+            int idadeCadastro = atributo.nextInt();
+            ocliente.colocarIdade(idadeCadastro);
+
+            System.out.println("Atribua um CPF: ");
+            String a = atributo.nextLine();
+            String cpfCadastro = atributo.nextLine();
+            ocliente.colocarCpf(cpfCadastro);
+        }while(!"".equals(ocliente.nome) || !"".equals(ocliente.cpf) || ocliente.idade != 0);
+        
+        System.out.println("Dados: nome= " + ocliente.nome + " Idade= " + ocliente.idade + " CPF= " + ocliente.cpf);
+    }
 }
