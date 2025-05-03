@@ -42,32 +42,64 @@ public class Cliente {
         this.nome = "";
         this.idade = 0;
     }
-
-    public String descricao() {
-        return "Nome do cliente: " + nome + ", CPF: " + cpf + ", Idade: " + idade;
-    }
     
+    public String descricao() {
+        return "Nome do cliente: " + nome + ",\nIdade: " + idade + ",\nCPF: " + cpf;
+    }
+   
     //tentei fazer um loop pra valiadar certinho mas ta dificil .-.
     public void cadastrarCliente() {
         Scanner atributo = new Scanner(System.in);
         Cliente ocliente = new Cliente();
-        
         //GAMBIARRA DOIDA!!!!!!!!!!!!!!!
         do {
             System.out.println("Atribua um nome: ");
-            String nomeCadastro = atributo.nextLine();
-            ocliente.colocarNome(nomeCadastro);
+            nome = atributo.nextLine();
+            ocliente.colocarNome(nome);
 
             System.out.println("Atribua uma Idade: ");
-            int idadeCadastro = atributo.nextInt();
-            ocliente.colocarIdade(idadeCadastro);
+            idade = atributo.nextInt();
+            ocliente.colocarIdade(idade);
 
             System.out.println("Atribua um CPF: ");
             String a = atributo.nextLine();
-            String cpfCadastro = atributo.nextLine();
-            ocliente.colocarCpf(cpfCadastro);
-        }while(!"".equals(ocliente.nome) || !"".equals(ocliente.cpf) || ocliente.idade != 0);
-        
-        System.out.println("Dados: nome= " + ocliente.nome + " Idade= " + ocliente.idade + " CPF= " + ocliente.cpf);
+            cpf = atributo.nextLine();
+            ocliente.colocarCpf(cpf);
+            
+        }while("".equals(ocliente.nome) || "".equals(ocliente.cpf) || ocliente.idade < 2);
+        System.out.println("-----------------------------------");
+        System.out.println(descricao());
     }
+    
+   public void listarClientes() {
+       System.out.println(descricao());
+   }
+   
+   public boolean buscarClientes(String busca) {
+       return this.cpf.equals(busca);
+   }
+   
+   //usar o buscarClientes
+   public void editarClientes() {
+       Scanner atributo = new Scanner(System.in);
+       Cliente ocliente = new Cliente();
+       do {
+            System.out.println("Nome do cliente: " + nome);
+            System.out.println("Edite o nome: ");
+            nome = atributo.nextLine();
+            ocliente.colocarNome(nome);
+            
+            System.out.println("Idade do cliente: " + idade);
+            System.out.println("Edite a Idade: ");
+            idade = atributo.nextInt();
+            ocliente.colocarIdade(idade);
+
+            System.out.println("CPF do cliente: " + cpf);
+            System.out.println("Edite o CPF: ");
+            String a = atributo.nextLine();
+            cpf = atributo.nextLine();
+            ocliente.colocarCpf(cpf);
+            
+        }while("".equals(ocliente.nome) || "".equals(ocliente.cpf) || ocliente.idade < 2);
+   }
 }
